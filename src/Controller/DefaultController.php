@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class AdminUserController extends Controller
+class DefaultController extends Controller
 {
     /**
-     * @Route("/admin/user", name="admin_user")
+     * @Route("/default", name="default")
      */
     public function index()
     {
-        return $this->render('admin_user/index.html.twig', [
-            'controller_name' => 'AdminUserController',
+        return $this->render('default/index.html.twig', [
+            'controller_name' => 'DefaultController',
         ]);
     }
 }

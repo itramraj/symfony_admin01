@@ -8,41 +8,63 @@
     {% endif %}
 
 
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-8 mx-auto">
+                    <div class="card border-none">
+                        <div class="card-body">
+                            <div class="mt-2">
+                                <img src="{{ asset('assets/images/logo-en.png') }}" alt="Wadi" class="brand-logo mx-auto d-block img-fluid rounded-circle"/>
+                            </div>
+                           
+                            <div class="mt-4">
+                                <form action="{{ path("fos_user_security_check") }}" method="post">
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                    <div class="formgroup">
+                                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                                        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                                    </div>
+                                    <br>
 
+                                    <div class="formgroup">
+                                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                                        <input class="form-control" type="password" id="password" name="_password" required="required" />
+                                        <div>
+                                            <br>
 
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                            </div>
 
-
-    <div class="row">
-        <div class="col-6 col-md-4">
-            
-        </div>
-        <div class="col-6 col-md-4">
-            <form action="{{ path("fos_user_security_check") }}" method="post">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                <div class="formgroup">
-                    <label for="username">{{ 'security.login.username'|trans }}</label>
-                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-                </div>
-
-                <div class="formgroup">
-                    <label for="password">{{ 'security.login.password'|trans }}</label>
-                    <input class="form-control" type="password" id="password" name="_password" required="required" />
-                    <div>
-
-                        <div class="checkbox">
-                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                            <input class="btn btn-success" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                                            </form>
+                                            <div class="clearfix"></div>
+                                           <!-- <p class="content-divider center mt-4"><span>or</span></p> -->
+                                        </div>
+                                            <!--
+                                        <p class="mt-4 social-login text-center">
+                                            <a href="#" class="btn btn-twitter"><em class="ion-social-twitter"></em></a>
+                                            <a href="#" class="btn btn-facebook"><em class="ion-social-facebook"></em></a>
+                                            <a href="#" class="btn btn-linkedin"><em class="ion-social-linkedin"></em></a>
+                                            <a href="#" class="btn btn-google"><em class="ion-social-googleplus"></em></a>
+                                            <a href="#" class="btn btn-github"><em class="ion-social-github"></em></a>
+                                        </p>
+                                        <p class="text-center">
+                                            Don't have an account yet? <a href="register.html">Sign Up Now</a>
+                                        </p>
+                                            -->
+                                    </div>
+                            </div>
                         </div>
-
-                        <input class="btn btn-success" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-                        </form>
-                    </div>
-                    <div class="col-6 col-md-4">
-                       
+                        <div class="clearfix"></div>
+                        <div class="col-sm-12 mt-5 footer">
+                           
+                        </div>
                     </div>
                 </div>
-        </div>
-    </div>
+                </section>
 
 
-{% endblock fos_user_content %}
+            {% endblock fos_user_content %}

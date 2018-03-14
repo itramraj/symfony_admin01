@@ -1,0 +1,73 @@
+framework:
+    translator: { fallback: %locale%}
+    
+    templating:
+        engines: ['twig']
+        
+parameters:
+    sonata.user.admin.user.class: Sonata\UserBundle\Admin\UserAdmin        
+        
+twig:
+    cache: false
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes: 'bootstrap_3_layout.html.twig'
+    
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: App\Entity\User
+    from_email:
+        address: '%env(MAILER_USER_ADDRESS)%'
+        sender_name: '%env(MAILER_USER_NAME)%'
+    service:
+        mailer: 'fos_user.mailer.noop'
+        
+    security:
+        handler: sonata.admin.security.handler.role
+
+        role_admin: ROLE_ADMIN
+        role_super_admin: ROLE_SUPER_ADMIN
+        
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+        
+    template:
+        engine: twig
+        
+sonata_admin:
+    templates:
+        dashboard: '@SonataAdmin/Core/dashboard.html.twig'
+        
+    dashboard:
+        groups:
+            app.admin.group.content:
+                label: app.admin.group.content
+                label_catalogue: App
+                items:
+                    - app.admin.post
+
+            app.admin.group.blog:
+                items: ~
+                item_adds:
+                    - sonata.admin.page
+                roles: [ ROLE_ONE, ROLE_TWO ]
+
+            app.admin.group.misc: ~
+            
+            
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: KnpMenuBundle::menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig       
+    
+
+    

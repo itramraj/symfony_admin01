@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 //use FOS\UserBundle\Model\User as ;
 
@@ -32,6 +34,17 @@ class UserAdmin extends AbstractAdmin {
                 ->add('last_name', TextType::class)
                 ->add('email')
                 //->add('plainPassword', TextType::class)
+//                ->add('plainPassword', RepeatedType::class, array(
+//                    'type' => 'password',
+//                    'options' => array('translation_domain' => 'FOSUserBundle'),
+//                    'first_options' => array('label' => 'form.password'),
+//                    'second_options' => array('label' => 'form.password_confirmation'),
+//                    'invalid_message' => 'fos_user.password.mismatch',
+//                ))
+//                ->add('plainPassword', RepeatedType::class, array(
+//                    'first_options' => array('label' => 'Password'),
+//                    'second_options' => array('label' => 'Repeat Password'),
+//                ))
                 ->end()
                 ->with('Groups')
                 //->add('groups', 'sonata_type_model', ['required' => false])
@@ -76,8 +89,14 @@ class UserAdmin extends AbstractAdmin {
                 //->add('password', TextType::class)
                 ->add('roles')
                 ->add('lastLogin')
+                ->add('_action', 'actions', array(
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                    //'delete' => array(),
+                    )
+                ))
         ;
     }
 
-    //////////
 }
